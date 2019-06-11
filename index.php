@@ -27,6 +27,11 @@ echo "<h2> My Pets</h2><br>
 
 });
 
+$f3->route('GET /@animal', function($f3, $params)
+{
+
+});
+
 $f3->route('GET /order', function(){
 
 //    $view = new Template();
