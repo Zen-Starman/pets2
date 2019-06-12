@@ -11,10 +11,7 @@
 
 <form action="order2" method="post">
     <h3>Animal</h3>
-    <check if="isset(@errors['animal'])">
-        <p>{{@errors['animal']}}</p>
-    </check>
-    <input type="text" value="Goat" name="animal">
+    <input type="text" name="animal">
     <input type="submit" value="Next">
 </form>
 
