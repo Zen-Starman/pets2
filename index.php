@@ -1,9 +1,9 @@
 <?php
 
 /**
- *  Another test project
+ *  Pair Programming 2: pets2
  *  Author: Zane Stearman
- *  Date:   04/10/2019
+ *  Date:   06/11/2019
  *  File:   index.php
  */
 
@@ -16,6 +16,7 @@ require_once('vendor/autoload.php');
 
 //Create an instance of the Base class
 $f3 = Base::instance();
+session_start();
 
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
@@ -24,7 +25,6 @@ $f3->set('DEBUG', 3);
 $f3->route('GET /', function(){
 echo "<h2> My Pets</h2><br>
     <a href='order'>Order a pet</a>";
-
 });
 
 $f3->route('GET /@animal', function($f3, $params)
@@ -54,8 +54,27 @@ $f3->route('GET /@animal', function($f3, $params)
 
 $f3->route('GET /order', function(){
 
-//    $view = new Template();
-
+    $view = new Template();
+    echo $view->render('views/form1.html');
 });
+
+$f3->route('POST /order2', function(){
+
+    $animal = $_POST['animal'];
+    $_SESSION['animal'] = $animal;
+
+    $view = new Template();
+    echo $view->render('views/form2.html');
+});
+
+$f3->route('POST /results', function(){
+
+    $color = $_POST['color'];
+    $_SESSION['color'] = $color;
+
+    $view = new Template();
+    echo $view->render('views/results.html');
+});
+
 //Run Fat-free
-$f3->run(); // ->called the object operator
+$f3->run();
